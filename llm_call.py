@@ -3,9 +3,22 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+import streamlit as st
 
-# 1. Load the environment variables from the .env file
+# 1. Load the environment variables from the .env file (local development)
 load_dotenv()
+
+# 2. Get the Groq API key — try Streamlit Cloud secrets first, then fall back to .env
+try:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
+except (KeyError, FileNotFoundError):
+    groq_api_key = os.getenv("GROQ_API_KEY")
+
+if not groq_api_key:
+    raise ValueError(
+        "GROQ_API_KEY not found. Set it in Streamlit Cloud Secrets "
+        "(or create a .env file with GROQ_API_KEY=your_key for local development)."
+    )
 
 # Initialize the Groq LLM globally
 llm = ChatGroq(
@@ -15,7 +28,9 @@ llm = ChatGroq(
     reasoning_format="parsed",
     timeout=None,
     max_retries=2,
+    api_key=groq_api_key,
 )
+
 
 def resturant_name_and_menu(cuisine):
     # 2. Define the individual prompts
@@ -48,9 +63,9 @@ def resturant_name_and_menu(cuisine):
 
     # 5. Step 2: Feed that generated name right into the menu prompt execution
     menu_response = menu_chain.invoke({"restaurant_name": generated_name})
-    
+
     # 6. Return both items perfectly structured for your Streamlit UI
     return {
         "restaurant_name": generated_name.strip(),
-        "menu": menu_response.content
+        "menu": menu_response.content,
     }

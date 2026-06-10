@@ -44,8 +44,8 @@ MANIFEST
 .DS_Store
 Thumbs.db
 
-# Streamlit
-.streamlit/
+# Streamlit secrets (local only — never commit)
+.streamlit/secrets.toml
 
 # Testing
 .pytest_cache/
