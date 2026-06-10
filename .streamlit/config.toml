@@ -12,3 +12,9 @@ base = "dark"
 [runner]
 # Disable file watcher on Render to avoid issues with read-only filesystem
 enableWatchdog = false
+
+[client]
+toolbarMode = "minimal"
+
+[ui]
+hideTopBar = true

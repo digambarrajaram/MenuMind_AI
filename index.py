@@ -31,8 +31,7 @@ st.markdown("""
 .stApp { background-color: var(--obsidian); color: var(--ivory); }
 
 #MainMenu,
-footer,
-.stAppDeployButton {
+footer {
     visibility: hidden;
 }
 
@@ -413,7 +412,7 @@ with st.sidebar:
 st.markdown("""
 <div class="masthead">
     <div class="masthead-eye">AI · Culinary Identity Studio</div>
-    <h1 class="masthead-title">Menu<em>Mind</em></h1>
+    <div class="masthead-title">Menu<em>Mind</em></div>
     <p class="masthead-sub">Generate luxury restaurant identities and culinary frameworks in seconds.</p>
 </div>
 """, unsafe_allow_html=True)
