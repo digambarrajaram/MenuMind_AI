@@ -29,7 +29,21 @@ st.markdown("""
 }
 
 .stApp { background-color: var(--obsidian); color: var(--ivory); }
-#MainMenu, footer, header { visibility: hidden; }
+
+#MainMenu,
+footer {
+    visibility: hidden;
+}
+
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    border: none !important;
+}
+
+[data-testid="stToolbar"] {
+    right: 1rem;
+}
+
 .block-container {
     padding-top: 2rem !important;
     padding-bottom: 4rem !important;
