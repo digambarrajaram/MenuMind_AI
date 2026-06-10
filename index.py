@@ -31,7 +31,8 @@ st.markdown("""
 .stApp { background-color: var(--obsidian); color: var(--ivory); }
 
 #MainMenu,
-footer {
+footer,
+.stAppDeployButton {
     visibility: hidden;
 }
 
