@@ -3,20 +3,18 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-import streamlit as st
 
 # 1. Load the environment variables from the .env file (local development)
 load_dotenv()
 
-# 2. Get the Groq API key — try Streamlit Cloud secrets first, then fall back to .env
-try:
-    groq_api_key = st.secrets["GROQ_API_KEY"]
-except (KeyError, FileNotFoundError):
-    groq_api_key = os.getenv("GROQ_API_KEY")
+# 2. Get the Groq API key — check environment variable directly.
+#    Works on Render (env vars set in dashboard), Streamlit Cloud (secrets),
+#    and local development (.env file).
+groq_api_key = os.getenv("GROQ_API_KEY")
 
 if not groq_api_key:
     raise ValueError(
-        "GROQ_API_KEY not found. Set it in Streamlit Cloud Secrets "
+        "GROQ_API_KEY not found. Set it as an environment variable on Render "
         "(or create a .env file with GROQ_API_KEY=your_key for local development)."
     )
 

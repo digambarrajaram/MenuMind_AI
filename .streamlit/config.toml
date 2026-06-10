@@ -1,0 +1,14 @@
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+
+[runner]
+# Disable file watcher on Render to avoid issues with read-only filesystem
+enableWatchdog = false

@@ -47,6 +47,10 @@ Thumbs.db
 # Streamlit secrets (local only — never commit)
 .streamlit/secrets.toml
 
+# Render
+render.yaml
+setup.sh
+
 # Testing
 .pytest_cache/
 .coverage
